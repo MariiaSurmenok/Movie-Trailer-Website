@@ -1,6 +1,8 @@
 import webbrowser
 import os
 import re
+import urllib
+import json
 
 
 # Styles and scripting for the page
@@ -125,10 +127,25 @@ movie_tile_content = '''
 <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
     <img src="{poster_image_url}" width="220" height="342">
     <h2>{movie_title}</h2>
+    <div>IMDb <img src="http://pngimg.com/upload/small/star_PNG1575.png" width="20px" height="20px" style="margin-top:-5px;"/> {imdb_rating}</div>
 </div>
 '''
 
+def get_imdb_rating(movie):
+    # Call IMDb webservice for rating
+    url = "http://www.omdbapi.com/?t=" + urllib.quote(movie.title)
+    connection = urllib.urlopen(url)
+    output = connection.read() # get json
+    connection.close()
+    
+    # parse json so it can be used as a normal dictionary
+    parsed_json = json.loads(output)
+    if 'imdbRating' in parsed_json.keys():
+        return parsed_json['imdbRating']
+    else:
+        return "N/A"
 
+    
 def create_movie_tiles_content(movies):
     # The HTML content for this section of the page
     content = ''
@@ -140,12 +157,12 @@ def create_movie_tiles_content(movies):
             r'(?<=be/)[^&#]+', movie.trailer_youtube_url)
         trailer_youtube_id = (youtube_id_match.group(0) if youtube_id_match
                               else None)
-
         # Append the tile for the movie with its content filled in
         content += movie_tile_content.format(
             movie_title=movie.title,
             poster_image_url=movie.poster_image_url,
-            trailer_youtube_id=trailer_youtube_id
+            trailer_youtube_id=trailer_youtube_id,
+            imdb_rating=get_imdb_rating(movie)
         )
     return content
 
