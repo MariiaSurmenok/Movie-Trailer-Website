@@ -1,8 +1,8 @@
 import media
 import fresh_tomatoes
 
-#create instances of class media.Movie(title, poster, trailer)
-rock_n_rolla = media.Movie("Rock N Rolla",
+# Create instances of class media.Movie(title, poster, trailer)
+rock_n_rolla = media.Movie("RocknRolla",
                          "https://miguelvaca.files.wordpress.com/2009/11/rocknrolla.jpg", # NOQA
                          "https://youtu.be/WEIykbkkq6I")
 
@@ -26,9 +26,9 @@ guardians = media.Movie("Guardians of the Galaxy",
                         "http://1.media.dorkly.cvcdn.com/26/95/18b149286ca6f2920e017bd5d2ffcbf5.jpg", # NOQA
                         "https://youtu.be/d96cjJhvlMA")
 
-#add instances of Movie to the list 
+# Add instances of Movie to the list 
 movies = [rock_n_rolla, the_martian, ex_machina,
           pacific_rim, the_man, guardians]
 
-#pass list of movies to the function to generate HTML
+# Pass list of movies to the function to generate HTML
 fresh_tomatoes.open_movies_page(movies)
