@@ -10,6 +10,10 @@ class Movie():
 
     def __init__(self, movie_title,
                  poster_image, trailer_youtube):
+        """
+        Creates a new instance of class Movie
+        Sets title, poster_image_url, and trailer_youtube_url
+        """
         self.title = movie_title
         self.poster_image_url = poster_image
         self.trailer_youtube_url = trailer_youtube
