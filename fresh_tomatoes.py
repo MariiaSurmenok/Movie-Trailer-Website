@@ -131,14 +131,14 @@ movie_tile_content = '''
 </div>
 '''
 
+# Call IMDb webservice for movie rating
 def get_imdb_rating(movie):
-    # Call IMDb webservice for rating
     url = "http://www.omdbapi.com/?t=" + urllib.quote(movie.title)
     connection = urllib.urlopen(url)
     output = connection.read() # get json
     connection.close()
     
-    # parse json so it can be used as a normal dictionary
+    # Parse json so it can be used as a normal dictionary
     parsed_json = json.loads(output)
     if 'imdbRating' in parsed_json.keys():
         return parsed_json['imdbRating']
@@ -179,6 +179,6 @@ def open_movies_page(movies):
     output_file.write(main_page_head + rendered_content)
     output_file.close()
 
-    # open the output file in the browser (in a new tab, if possible)
+    # Open the output file in the browser (in a new tab, if possible)
     url = os.path.abspath(output_file.name)
     webbrowser.open('file://' + url, new=2)
