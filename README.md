@@ -1,9 +1,16 @@
 # Movie-Trailer-Website
 Program that allows to create html page with your favorite movies.
 ## Quick start
+You need Python 2.7 installed on your computer.
 * clone the repo `git clone https://github.com/MariiaSurmenok/Movie-Trailer-Website.git`
 * execute `python entertainment_center.py`
 
+To run the code:
+* in terminal (command line): 
+    * run the command `python entertainment_center.py` 
+* in IDLE: 
+    * open file **entertainment_center.py**
+    * open _run_ menu and click _run module_
 
 To change content:
 * open file **entertainment_center.py** in editor
